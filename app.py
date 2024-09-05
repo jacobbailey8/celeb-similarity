@@ -10,19 +10,15 @@ import psycopg2
 import boto3
 from scipy.spatial.distance import cosine
 import os
-from dotenv import load_dotenv
-
-# Load environment variables
-load_dotenv()
 
 # Database and S3 settings
-RDS_HOST = os.getenv("RDS_HOST")
-RDS_DBNAME = os.getenv("RDS_DBNAME")
-RDS_USER = os.getenv("RDS_USER")
-RDS_PASSWORD = os.getenv("RDS_PASSWORD")
-S3_BUCKET = os.getenv("S3_BUCKET")
-AWS_ACCESS_KEY = os.getenv("AWS_ACCESS_KEY")
-AWS_SECRET_KEY = os.getenv("AWS_SECRET_KEY")
+RDS_HOST = st.secrets["RDS_HOST"]
+RDS_DBNAME = st.secrets["RDS_DBNAME"]
+RDS_USER = st.secrets["RDS_USER"]
+RDS_PASSWORD = st.secrets["RDS_PASSWORD"]
+S3_BUCKET = st.secrets["S3_BUCKET"]
+AWS_ACCESS_KEY = st.secrets["AWS_ACCESS_KEY"]
+AWS_SECRET_KEY = st.secrets["AWS_SECRET_KEY"]
 
 # Load the pretrained FaceNet model
 facenet_model = InceptionResnetV1(pretrained='vggface2').eval()
